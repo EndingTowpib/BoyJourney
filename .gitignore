@@ -9,6 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/TestCases/pocounit-results/
+/TestCases/__pycache__/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
