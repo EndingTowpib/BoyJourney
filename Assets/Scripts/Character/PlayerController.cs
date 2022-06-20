@@ -16,6 +16,11 @@ namespace Character
             Debug.Assert(_mCharacterController);
         }
 
+        private void Start()
+        {
+            _mCharacterController.onCharacterDied.AddListener(()=> enabled = false);
+        }
+
         private void Update()
         {
             ProcessInput();
@@ -33,6 +38,11 @@ namespace Character
             if (Input.GetKeyDown(KeyCode.K))
             {
                 _mCharacterController.Dash();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _mCharacterController.TakeDamage(gameObject, 1);
             }
         }
     }
