@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Character
 {
@@ -14,6 +15,8 @@ namespace Character
         
         [SerializeField]
         private Transform groundCheckObject;
+
+        private float _mGroundCheckEps = 0.1f;
         private RaycastHit2D _mGroundHitInfo;
         private int _mEnvLayerMask;
 
@@ -47,6 +50,11 @@ namespace Character
         private static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
         private static readonly int AnimBlink = Animator.StringToHash("Blink");
         private static readonly int AnimIsDashing = Animator.StringToHash("IsDashing");
+        
+        [SerializeField] private int healthCount;
+        private bool IsDead => healthCount == 0;
+
+        [HideInInspector] public UnityEvent onCharacterDied;
 
         private void Awake()
         {
@@ -65,6 +73,7 @@ namespace Character
         private void Start()
         {
             _mCurrentDashCount = airMaxDashCount;
+            healthCount = 1;
         }
 
         private void FixedUpdate()
@@ -73,6 +82,12 @@ namespace Character
             bool lastFrameGrounded = IsGrounded;
             _mGroundHitInfo = Physics2D.Linecast(transform.position, groundCheckObject.position,
                 _mEnvLayerMask);
+            if (!IsGrounded)
+            {
+                var position = groundCheckObject.position;
+                _mGroundHitInfo = Physics2D.Linecast(position - new Vector3(_mGroundCheckEps, 0, 0)
+                    , position + new Vector3(_mGroundCheckEps, 0, 0), _mEnvLayerMask);
+            }
             if (!lastFrameGrounded && IsGrounded)
             {
                 OnLandingGround();
@@ -127,7 +142,10 @@ namespace Character
 
         private void OnDrawGizmos()
         {
-            Debug.DrawLine(transform.position, groundCheckObject.position, Color.magenta);
+            var position = groundCheckObject.position;
+            Debug.DrawLine(transform.position, position, Color.magenta);
+            Debug.DrawLine(position - new Vector3(_mGroundCheckEps, 0, 0)
+                , position + new Vector3(_mGroundCheckEps, 0, 0), Color.magenta);
         }
 
         private void FlipCharacter()
@@ -148,6 +166,12 @@ namespace Character
         private void OnLeavingGround()
         {
             _mTimeSinceLeavingGround = 0;
+        }
+
+        private void Die()
+        {
+            Debug.Log("Character Died!");
+            onCharacterDied?.Invoke();
         }
         
         // -----------------------------------INTERFACE--------------------------------------
@@ -207,6 +231,21 @@ namespace Character
                     Debug.Log("Hit something and stop dash");
                     break;
                 }
+            }
+        }
+
+        public void TakeDamage(GameObject instigator , int damage)
+        {
+            if (IsDead)
+            {
+                return;
+            }
+            Debug.Assert(damage > 0);
+            healthCount = Mathf.Max(healthCount - damage, 0);
+            Debug.Log($"Character take {damage} damage from {instigator.name}, {healthCount} health left");
+            if (healthCount == 0)
+            {
+                Die();
             }
         }
     }
