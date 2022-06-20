@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Poco
+namespace Utils.PocoInUnity3D.Poco
 {
 	public class AbstractNode
 	{

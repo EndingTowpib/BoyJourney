@@ -1,7 +1,7 @@
 using System;
 using System.Net.Sockets;
 
-namespace TcpServer
+namespace Utils.PocoInUnity3D.TcpServer
 {
     /// <summary>
     /// 与客户端的连接已建立事件参数

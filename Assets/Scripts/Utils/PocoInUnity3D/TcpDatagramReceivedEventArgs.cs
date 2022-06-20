@@ -1,7 +1,7 @@
 using System;
 using System.Net.Sockets;
 
-namespace TcpServer
+namespace Utils.PocoInUnity3D.TcpServer
 {
     /// <summary>
     /// 接收到数据报文事件参数

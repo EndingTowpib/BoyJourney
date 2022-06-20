@@ -1,7 +1,7 @@
 using System;
 using System.Net.Sockets;
 
-namespace TcpServer
+namespace Utils.PocoInUnity3D.TcpServer
 {
     /// <summary>
     /// Internal class to join the TCP client and buffer together

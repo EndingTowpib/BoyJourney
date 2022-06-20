@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-namespace TcpServer
+namespace Utils.PocoInUnity3D.TcpServer
 {
     public interface ProtoFilter
     {

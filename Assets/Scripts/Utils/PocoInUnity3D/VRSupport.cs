@@ -1,13 +1,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Poco;
+using Utils.PocoInUnity3D.Poco;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using TcpServer;
+using Utils.PocoInUnity3D.TcpServer;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 

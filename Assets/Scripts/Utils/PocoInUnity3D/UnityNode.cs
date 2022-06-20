@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 
 
-namespace Poco
+namespace Utils.PocoInUnity3D.Poco
 {
     public class UnityNode : AbstractNode
     {
