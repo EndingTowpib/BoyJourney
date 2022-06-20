@@ -24,12 +24,15 @@ namespace Character
         private void ProcessInput()
         {
             float horizontalInput = Input.GetAxis("Horizontal");
-            float hSpeed = horizontalInput * _mCharacterController.GetHSpeedLimit();
-            _mCharacterController.HSpeed = hSpeed;
+            _mCharacterController.UpdateHSpeed(horizontalInput);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _mCharacterController.Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                _mCharacterController.Dash();
             }
         }
     }
