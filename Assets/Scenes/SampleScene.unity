@@ -378,7 +378,6 @@ GameObject:
   - component: {fileID: 2072623479}
   - component: {fileID: 2072623478}
   - component: {fileID: 2072623480}
-  - component: {fileID: 2072623481}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -396,7 +395,7 @@ Animator:
   m_GameObject: {fileID: 2072623472}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4cb00b4106e4cc45a336a502bd4a661, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -540,18 +539,3 @@ MonoBehaviour:
   maxVSpeed: 10
   jumpSpeed: 8
   gravity: -9.8
---- !u!114 &2072623481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072623472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
-  m_SpriteKey: 0

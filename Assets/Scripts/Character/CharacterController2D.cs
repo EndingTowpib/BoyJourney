@@ -8,6 +8,7 @@ namespace Character
     {
         private Rigidbody2D _mRigidbody;
         private SpriteRenderer _mSpriteRenderer;
+        private Animator _mAnimator;
 
         public bool IsGrounded => _mGroundHitInfo;
         
@@ -44,7 +45,11 @@ namespace Character
         private bool _mFaceRight = true;
         
         // to indicate that the Floating character is jumping but not just falling down
-        private bool _mJumpFlag = false; 
+        private bool _mJumpFlag = false;
+        
+        private static readonly int AnimHSpeed = Animator.StringToHash("HSpeed");
+        private static readonly int AnimVSpeed = Animator.StringToHash("VSpeed");
+        private static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
 
         private void Awake()
         {
@@ -52,6 +57,8 @@ namespace Character
             Debug.Assert(_mRigidbody);
             _mSpriteRenderer = GetComponent<SpriteRenderer>();
             Debug.Assert(_mSpriteRenderer);
+            _mAnimator = GetComponent<Animator>();
+            Debug.Assert(_mAnimator);
             Debug.Assert(groundCheckObject);
             _mEnvLayerMask = 1 << LayerMask.NameToLayer("Env");
 
@@ -84,19 +91,26 @@ namespace Character
 
             if (HSpeed < 0 && _mFaceRight || HSpeed >0 && !_mFaceRight)
             {
-                _mFaceRight = !_mFaceRight;
-                FlipRenderer();
+                FlipCharacter();
             }
             
         }
-        
+
+        private void Update()
+        {
+            _mAnimator.SetFloat(AnimHSpeed,Mathf.Abs(HSpeed));
+            _mAnimator.SetFloat(AnimVSpeed, VSpeed);
+            _mAnimator.SetBool(AnimIsGrounded,IsGrounded);
+        }
+
         private void OnDrawGizmos()
         {
             Debug.DrawLine(transform.position, groundCheckObject.position, Color.magenta);
         }
 
-        private void FlipRenderer()
+        private void FlipCharacter()
         {
+            _mFaceRight = !_mFaceRight;
             _mSpriteRenderer.flipX = !_mSpriteRenderer.flipX;
         }
 
