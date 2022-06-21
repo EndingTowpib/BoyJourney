@@ -11,14 +11,16 @@ namespace Character
         private SpriteRenderer _mSpriteRenderer;
         private Animator _mAnimator;
 
-        public bool IsGrounded => _mGroundHitInfo;
+        public bool IsGrounded { get; set; }
         
         [SerializeField]
         private Transform groundCheckObject;
 
-        private float _mGroundCheckEps = 0.1f;
+        private float _mGroundCheckEps = 0.3f;
         private RaycastHit2D _mGroundHitInfo;
         private int _mEnvLayerMask;
+
+        [SerializeField] private float maxClimbAngle = 60;
 
         [SerializeField] private float maxHSpeed = 5.0f;
         [SerializeField] private float maxVSpeed = 10.0f;
@@ -82,11 +84,16 @@ namespace Character
             bool lastFrameGrounded = IsGrounded;
             _mGroundHitInfo = Physics2D.Linecast(transform.position, groundCheckObject.position,
                 _mEnvLayerMask);
+            IsGrounded = _mGroundHitInfo;
             if (!IsGrounded)
             {
                 var position = groundCheckObject.position;
                 _mGroundHitInfo = Physics2D.Linecast(position - new Vector3(_mGroundCheckEps, 0, 0)
                     , position + new Vector3(_mGroundCheckEps, 0, 0), _mEnvLayerMask);
+                IsGrounded = _mGroundHitInfo && Mathf.Abs(_mGroundHitInfo.normal.normalized.y) <=
+                    Mathf.Sin(maxClimbAngle * Mathf.Deg2Rad);
+                if(IsGrounded)
+                    Debug.DrawRay(_mGroundHitInfo.point,_mGroundHitInfo.normal,Color.blue);
             }
             if (!lastFrameGrounded && IsGrounded)
             {
