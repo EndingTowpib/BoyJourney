@@ -16,9 +16,10 @@ namespace Character
         [SerializeField]
         private Transform groundCheckObject;
 
-        private float _mGroundCheckEps = 0.3f;
+        private float _mGroundCheckEps = 0.1f;
         private RaycastHit2D _mGroundHitInfo;
         private int _mEnvLayerMask;
+        private float _mClimbGroundCheckDis = 0.3f;
 
         [SerializeField] private float maxClimbAngle = 60;
 
@@ -90,10 +91,28 @@ namespace Character
                 var position = groundCheckObject.position;
                 _mGroundHitInfo = Physics2D.Linecast(position - new Vector3(_mGroundCheckEps, 0, 0)
                     , position + new Vector3(_mGroundCheckEps, 0, 0), _mEnvLayerMask);
-                IsGrounded = _mGroundHitInfo && Mathf.Abs(_mGroundHitInfo.normal.normalized.y) <=
-                    Mathf.Sin(maxClimbAngle * Mathf.Deg2Rad);
-                if(IsGrounded)
-                    Debug.DrawRay(_mGroundHitInfo.point,_mGroundHitInfo.normal,Color.blue);
+                IsGrounded = _mGroundHitInfo;
+                if (!IsGrounded)
+                {
+                    var left = position - new Vector3(_mClimbGroundCheckDis, 0, 0);
+                    var right = position + new Vector3(_mClimbGroundCheckDis, 0, 0);
+                    var hit1 = Physics2D.Linecast(left, right, _mEnvLayerMask);
+                    var hit2 = Physics2D.Linecast(right, left, _mEnvLayerMask);
+                    float maxY = Mathf.Sin(maxClimbAngle * Mathf.Deg2Rad);
+                    if(hit1 && hit1.normal.normalized.y > 1e-3 && 
+                       hit1.normal.normalized.y <= maxY)
+                    {
+                        IsGrounded = true;
+                        _mGroundHitInfo = hit1;
+                        Debug.DrawRay(_mGroundHitInfo.point, _mGroundHitInfo.normal, Color.blue);
+                    }else if (hit2 && hit2.normal.normalized.y > 1e-3 &&
+                              hit2.normal.normalized.y <= maxY)
+                    {
+                        IsGrounded = true;
+                        _mGroundHitInfo = hit2;
+                        Debug.DrawRay(_mGroundHitInfo.point, _mGroundHitInfo.normal, Color.blue);
+                    }
+                }
             }
             if (!lastFrameGrounded && IsGrounded)
             {
