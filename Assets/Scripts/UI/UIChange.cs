@@ -23,7 +23,7 @@ public class UIChange : MonoBehaviour
     }
     public void ExitGame()
     {
-        BGMController.instance.SaveVolume();
+        //BGMController.instance.SaveVolume();
 #if UNITY_EDITOR 
         UnityEditor.EditorApplication.isPlaying = false;
 #else
