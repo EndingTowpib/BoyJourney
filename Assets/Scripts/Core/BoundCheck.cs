@@ -9,7 +9,7 @@ public class BoundCheck : MonoBehaviour
     #region 可视变量
     [SerializeField] [Tooltip("可交互的标签。")] private string reactTag = "Bound";
     ///[SerializeField] [Tooltip("是否可以重复交互。")] private bool repeat = false;
-
+    public static Vector3 respawn=new Vector3(-18.0f, 0.0f, 0.0f);
     #endregion
 
 
@@ -41,8 +41,8 @@ public class BoundCheck : MonoBehaviour
     {
         if (collision.tag == reactTag)
         {
-            Debug.Log("ground!!!!");
-            transform.localPosition = new Vector3(-18.0f, 0.0f, 0.0f);
+            ///Debug.Log("ground!!!!");
+            transform.localPosition = respawn;
         }
     
         
