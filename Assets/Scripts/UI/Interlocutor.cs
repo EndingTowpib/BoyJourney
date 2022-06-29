@@ -12,6 +12,7 @@ public class Interlocutor : MonoBehaviour
     [SerializeField] [Tooltip("是否可以重复交互。")] private bool repeat = false;
     [SerializeField] [Tooltip("交互事件按键。")] private KeyCode keyDownCode = KeyCode.F;
     [SerializeField] [Tooltip("交互事件列表。")] private UnityEvent keyDownEvent = null;
+    [SerializeField] [Tooltip("个性化Y轴偏移")] private float tipPosY = 0f;
     #endregion
 
     #region 成员变量
@@ -32,6 +33,7 @@ public class Interlocutor : MonoBehaviour
     private void Start()
     {
         tip = Instantiate(Resources.Load(tipTemplate.name) as GameObject);
+        tip.transform.position=new Vector3(0f, tipPosY, 0f)+GetComponent<Transform>().position;
         tip.SetActive(false);
     }
 
