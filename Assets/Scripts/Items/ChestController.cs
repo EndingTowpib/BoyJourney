@@ -12,21 +12,6 @@ public class ChestController : MonoBehaviour
         mAnimation = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Trash Code But Only Find This Way To Prevent Chest Gone
-        //var scenename = SceneManager.GetActiveScene().name;
-        //if (scenename == "Stage1")
-        //{
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
-
     public void Open()
     {
         mAnimation.SetBool("tryOpen", true);
@@ -34,6 +19,14 @@ public class ChestController : MonoBehaviour
     public void ChangeScene()
     {
         mAnimation.SetBool("tryOpen", false);
-        SceneManager.LoadScene("SelectScene");
+        if (SceneManager.GetActiveScene().buildIndex != 3)
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

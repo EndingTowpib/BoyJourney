@@ -6,28 +6,40 @@ using UnityEngine.UI;
 
 public class UIChange : MonoBehaviour
 {
+    private GameObject UI_Pause;
+    private bool isPause;
+    private void Awake()
+    {
+        UI_Pause = transform.GetChild(0).gameObject;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        UI_Pause.SetActive(false);
+        isPause = false;
+    }
+    public void ChangePauseStatus()
+    {
+        if(isPause)
+        {
+            DePause();
+            isPause = false;
+        }
+        else
+        {
+            Pause();
+            isPause = true;
+        }
+    }
+    public void Pause()
+    {
+        UI_Pause.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void DePause()
+    {
+        UI_Pause.SetActive(false);
+        Time.timeScale = 1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void StartGame()
-    {
-        SceneManager.LoadScene("SelectScene");
-    }
-    public void ExitGame()
-    {
-        //BGMController.instance.SaveVolume();
-#if UNITY_EDITOR 
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
 }

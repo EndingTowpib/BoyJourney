@@ -9,7 +9,6 @@ namespace Character
     public class PlayerController : MonoBehaviour
     {
         private CharacterController2D _mCharacterController;
-
         private void Awake()
         {
             _mCharacterController = GetComponent<CharacterController2D>();
@@ -44,6 +43,7 @@ namespace Character
             {
                 _mCharacterController.TakeDamage(gameObject, 1);
             }
+            
         }
     }
 }
