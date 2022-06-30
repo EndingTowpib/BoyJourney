@@ -34,12 +34,12 @@ public class BoundCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// 当触发器检测到物理接触时触发。
+    /// 当碰撞器检测到物理接触时触发。
     /// </summary>
     /// <param name="collision">碰撞物体对象。</param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == reactTag)
+        if (collision.gameObject.tag == reactTag)
         {
             ///Debug.Log("ground!!!!");
             transform.localPosition = respawn;
@@ -49,10 +49,10 @@ public class BoundCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// 当触发器解除物理接触时触发。
+    /// 当碰撞器解除物理接触时触发。
     /// </summary>
     /// <param name="collision">碰撞物体对象。</param>
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
      
     }
