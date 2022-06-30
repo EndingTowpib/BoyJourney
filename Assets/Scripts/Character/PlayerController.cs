@@ -9,7 +9,7 @@ namespace Character
     public class PlayerController : MonoBehaviour
     {
         private CharacterController2D _mCharacterController;
-
+        public static bool GameStop = false;
         private void Awake()
         {
             _mCharacterController = GetComponent<CharacterController2D>();
@@ -44,6 +44,21 @@ namespace Character
             {
                 _mCharacterController.TakeDamage(gameObject, 1);
             }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                ///Debug.Log("stopGame");
+                GameStop = !GameStop;
+                if (GameStop)
+                {    
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
+            
+            }
+            
         }
     }
 }
