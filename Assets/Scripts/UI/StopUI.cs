@@ -5,20 +5,14 @@ using UnityEngine.SceneManagement;
 using Character;
 public class StopUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Replay()
     {
-        PlayerController.GameStop = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Exit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
