@@ -26,6 +26,8 @@ public class DoorController : MonoBehaviour
     }
     public void Open()
     {
+        BGMController.instance.SaveVolume();
+        UseInterfaceAudio.instance.PlayClip(UseInterfaceAudio.instance.chestOpen);
         SceneManager.LoadScene(curStage+1);
     }
 }

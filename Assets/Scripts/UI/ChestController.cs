@@ -16,10 +16,12 @@ public class ChestController : MonoBehaviour
     }
     public void Open()
     {
+        UseInterfaceAudio.instance.PlayClip(UseInterfaceAudio.instance.chestOpen);
         mAnimation.SetBool("tryOpen", true);
     }
     public void ChangeScene()
     {
+        BGMController.instance.SaveVolume();
         mAnimation.SetBool("tryOpen", false);
         int curStage = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("StageFinished",Mathf.Max(PlayerPrefs.GetInt("StageFinished"), curStage - 1));

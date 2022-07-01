@@ -22,8 +22,12 @@ public class SaveStation : MonoBehaviour
         if (collision.tag == "Player")
         {
             ///Debug.Log("checkPoint");
-            BoundCheck.respawn= gameObject.transform.position;
-            CheckPointOn.SetActive(true);
+            if (!CheckPointOn.activeSelf)
+            {
+                UseInterfaceAudio.instance.PlayClip(UseInterfaceAudio.instance.goSavepoint);
+                BoundCheck.respawn = gameObject.transform.position;
+                CheckPointOn.SetActive(true);
+            }
         }
     }
 }

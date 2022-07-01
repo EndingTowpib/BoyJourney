@@ -48,13 +48,26 @@ public class BGMController : MonoBehaviour
         //audioSource.volume = UI_BGM.GetComponent<Slider>().value;
         if (PlayerPrefs.HasKey("Mute"))
         {
-            audioSource.volume = PlayerPrefs.GetInt("Mute") == 1 ? 0f : PlayerPrefs.GetFloat("BGMVolume");
+            //audioSource.volume = PlayerPrefs.GetInt("Mute") == 1 ? 0f : PlayerPrefs.GetFloat("BGMVolume");
+            audioSource.volume = PlayerPrefs.GetInt("Mute") == 1 ? 0f : 1f;
         }
-        else audioSource.volume = PlayerPrefs.GetFloat("BGMVolume");
+        else audioSource.volume = 1f;
     }
     public void SaveVolume()
     {
-        PlayerPrefs.SetFloat("BGMVolume", audioSource.volume);
+        if(PlayerPrefs.HasKey("Mute"))
+        {
+            if(PlayerPrefs.GetInt("Mute")==0)
+            {
+                //PlayerPrefs.SetFloat("BGMVolume", audioSource.volume);
+                PlayerPrefs.SetFloat("BGMVolume", 1f);
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("BGMVolume", 0f);
+            }
+        }
+        else PlayerPrefs.SetFloat("BGMVolume", 1f);
     }
     public void TurnVolume()
     {

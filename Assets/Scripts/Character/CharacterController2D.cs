@@ -216,7 +216,7 @@ namespace Character
             {
                 return;
             }
-
+            UseInterfaceAudio.instance.PlayClip(UseInterfaceAudio.instance.charJump);
             _mJumpFlag = true;
             _mVSpeed = jumpSpeed;
         }

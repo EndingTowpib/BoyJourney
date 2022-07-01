@@ -42,6 +42,7 @@ public class BoundCheck : MonoBehaviour
         if (collision.gameObject.tag == reactTag)
         {
             ///Debug.Log("ground!!!!");
+            UseInterfaceAudio.instance.PlayClip(UseInterfaceAudio.instance.charDeath);
             transform.localPosition = respawn;
         }
     
