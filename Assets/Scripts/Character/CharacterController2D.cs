@@ -194,11 +194,11 @@ namespace Character
             _mTimeSinceLeavingGround = 0;
         }
 
-        private void Die()
-        {
-            Debug.Log("Character Died!");
-            onCharacterDied?.Invoke();
-        }
+        //private void Die()
+        //{
+        //    Debug.Log("Character Died!");
+        //    onCharacterDied?.Invoke();
+        //}
         
         // -----------------------------------INTERFACE--------------------------------------
         
@@ -260,19 +260,19 @@ namespace Character
             }
         }
 
-        public void TakeDamage(GameObject instigator , int damage)
-        {
-            if (IsDead)
-            {
-                return;
-            }
-            Debug.Assert(damage > 0);
-            healthCount = Mathf.Max(healthCount - damage, 0);
-            Debug.Log($"Character take {damage} damage from {instigator.name}, {healthCount} health left");
-            if (healthCount == 0)
-            {
-                Die();
-            }
-        }
+        //public void TakeDamage(GameObject instigator , int damage)
+        //{
+        //    if (IsDead)
+        //    {
+        //        return;
+        //    }
+        //    Debug.Assert(damage > 0);
+        //    healthCount = Mathf.Max(healthCount - damage, 0);
+        //    Debug.Log($"Character take {damage} damage from {instigator.name}, {healthCount} health left");
+        //    if (healthCount == 0)
+        //    {
+        //        Die();
+        //    }
+        //}
     }
 }

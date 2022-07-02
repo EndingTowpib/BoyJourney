@@ -39,10 +39,10 @@ namespace Character
                 _mCharacterController.Dash();
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _mCharacterController.TakeDamage(gameObject, 1);
-            }
+            //if (Input.GetKeyDown(KeyCode.Q))
+            //{
+            //    _mCharacterController.TakeDamage(gameObject, 1);
+            //}
             
         }
     }
