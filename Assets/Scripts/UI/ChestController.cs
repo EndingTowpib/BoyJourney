@@ -25,7 +25,7 @@ public class ChestController : MonoBehaviour
         mAnimation.SetBool("tryOpen", false);
         int curStage = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("StageFinished",Mathf.Max(PlayerPrefs.GetInt("StageFinished"), curStage - 1));
-        if (SceneManager.GetActiveScene().buildIndex != 3)
+        if (SceneManager.GetActiveScene().buildIndex != 4)
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene(curStage + 1);
