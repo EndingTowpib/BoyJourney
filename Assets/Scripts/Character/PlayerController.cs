@@ -34,7 +34,7 @@ namespace Character
             {
                 _mCharacterController.Jump();
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && Time.timeScale !=0)
             {
                 _mCharacterController.Dash();
             }
