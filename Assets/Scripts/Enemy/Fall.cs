@@ -5,9 +5,9 @@ using UnityEngine;
 public class Fall : MonoBehaviour
 {
     public AnimationCurve myCurve;
-    private bool flag = false;//ÅĞ¶¨½ÇÉ«ÊÇ·ñ½øÈë·¶Î§
-    public float intialY = 1;//³õÊ¼Î»ÖÃ£¬ÉèÎªÓë·ÅÖÃµÄÎïÌåµÄ³õÊ¼Y×ø±êÏàÍ¬
-    [SerializeField] [Tooltip("¿É½»»¥µÄ±êÇ©¡£")] private string reactTag = "Player";
+    private bool flag = false;//åˆ¤å®šè§’è‰²æ˜¯å¦è¿›å…¥èŒƒå›´
+    public float intialY = 1;//åˆå§‹ä½ç½®ï¼Œè®¾ä¸ºä¸æ”¾ç½®çš„ç‰©ä½“çš„åˆå§‹Yåæ ‡ç›¸åŒ
+    [SerializeField] [Tooltip("å¯äº¤äº’çš„æ ‡ç­¾ã€‚")] private string reactTag = "Player";
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == reactTag)

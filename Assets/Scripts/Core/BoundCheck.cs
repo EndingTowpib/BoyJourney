@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// ½»»¥Õß×é¼şÀà¡£
+/// äº¤äº’è€…ç»„ä»¶ç±»ã€‚
 /// </summary>
 public class BoundCheck : MonoBehaviour
 {
-    #region ¿ÉÊÓ±äÁ¿
-    [SerializeField] [Tooltip("¿É½»»¥µÄ±êÇ©¡£")] private string reactTag = "Bound";
-    ///[SerializeField] [Tooltip("ÊÇ·ñ¿ÉÒÔÖØ¸´½»»¥¡£")] private bool repeat = false;
+    #region å¯è§†å˜é‡
+    [SerializeField] [Tooltip("å¯äº¤äº’çš„æ ‡ç­¾ã€‚")] private string reactTag = "Bound";
+    ///[SerializeField] [Tooltip("æ˜¯å¦å¯ä»¥é‡å¤äº¤äº’ã€‚")] private bool repeat = false;
     public static Vector3 respawn;
     #endregion
 
@@ -16,9 +16,9 @@ public class BoundCheck : MonoBehaviour
 
 
 
-    #region »ù´¡Ë½ÓĞ·½·¨
+    #region åŸºç¡€ç§æœ‰æ–¹æ³•
     /// <summary>
-    /// µÚÒ»Ö¡µ÷ÓÃÖ®Ç°´¥·¢¡£
+    /// ç¬¬ä¸€å¸§è°ƒç”¨ä¹‹å‰è§¦å‘ã€‚
     /// </summary>
     private void Start()
     {
@@ -26,7 +26,7 @@ public class BoundCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// Ö¡Ë¢ĞÂÊ±´¥·¢¡£
+    /// å¸§åˆ·æ–°æ—¶è§¦å‘ã€‚
     /// </summary>
     private void Update()
     {
@@ -34,9 +34,9 @@ public class BoundCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// µ±Åö×²Æ÷¼ì²âµ½ÎïÀí½Ó´¥Ê±´¥·¢¡£
+    /// å½“ç¢°æ’å™¨æ£€æµ‹åˆ°ç‰©ç†æ¥è§¦æ—¶è§¦å‘ã€‚
     /// </summary>
-    /// <param name="collision">Åö×²ÎïÌå¶ÔÏó¡£</param>
+    /// <param name="collision">ç¢°æ’ç‰©ä½“å¯¹è±¡ã€‚</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == reactTag)
@@ -50,9 +50,9 @@ public class BoundCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// µ±Åö×²Æ÷½â³ıÎïÀí½Ó´¥Ê±´¥·¢¡£
+    /// å½“ç¢°æ’å™¨è§£é™¤ç‰©ç†æ¥è§¦æ—¶è§¦å‘ã€‚
     /// </summary>
-    /// <param name="collision">Åö×²ÎïÌå¶ÔÏó¡£</param>
+    /// <param name="collision">ç¢°æ’ç‰©ä½“å¯¹è±¡ã€‚</param>
     private void OnCollisionExit2D(Collision2D collision)
     {
      

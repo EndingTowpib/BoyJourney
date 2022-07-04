@@ -2,33 +2,33 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// ½»»¥Õß×é¼şÀà¡£
+/// äº¤äº’è€…ç»„ä»¶ç±»ã€‚
 /// </summary>
 public class Interlocutor : MonoBehaviour
 {
-    #region ¿ÉÊÓ±äÁ¿
-    [SerializeField] [Tooltip("¿É½»»¥µÄ±êÇ©¡£")] private string reactTag = "Player";
-    [SerializeField] [Tooltip("½»»¥ÌáÊ¾Ä£°å¶ÔÏó¡£")] private GameObject tipTemplate = null;
-    [SerializeField] [Tooltip("ÊÇ·ñ¿ÉÒÔÖØ¸´½»»¥¡£")] private bool repeat = false;
-    [SerializeField] [Tooltip("½»»¥ÊÂ¼ş°´¼ü¡£")] private KeyCode keyDownCode = KeyCode.F;
-    [SerializeField] [Tooltip("½»»¥ÊÂ¼şÁĞ±í¡£")] private UnityEvent keyDownEvent = null;
-    [SerializeField] [Tooltip("¸öĞÔ»¯YÖáÆ«ÒÆ")] private float tipPosY = 0f;
+    #region å¯è§†å˜é‡
+    [SerializeField] [Tooltip("å¯äº¤äº’çš„æ ‡ç­¾ã€‚")] private string reactTag = "Player";
+    [SerializeField] [Tooltip("äº¤äº’æç¤ºæ¨¡æ¿å¯¹è±¡ã€‚")] private GameObject tipTemplate = null;
+    [SerializeField] [Tooltip("æ˜¯å¦å¯ä»¥é‡å¤äº¤äº’ã€‚")] private bool repeat = false;
+    [SerializeField] [Tooltip("äº¤äº’äº‹ä»¶æŒ‰é”®ã€‚")] private KeyCode keyDownCode = KeyCode.F;
+    [SerializeField] [Tooltip("äº¤äº’äº‹ä»¶åˆ—è¡¨ã€‚")] private UnityEvent keyDownEvent = null;
+    [SerializeField] [Tooltip("ä¸ªæ€§åŒ–Yè½´åç§»")] private float tipPosY = 0f;
     #endregion
 
-    #region ³ÉÔ±±äÁ¿
+    #region æˆå‘˜å˜é‡
     private GameObject tip = null;
     #endregion
 
-    #region ÊôĞÔ¿ØÖÆ
+    #region å±æ€§æ§åˆ¶
     /// <summary>
-    /// ÊÇ·ñÒÑ¾­½øĞĞÁË½»»¥¡£
+    /// æ˜¯å¦å·²ç»è¿›è¡Œäº†äº¤äº’ã€‚
     /// </summary>
     public bool Finished { get; set; } = false;
     #endregion
 
-    #region »ù´¡Ë½ÓĞ·½·¨
+    #region åŸºç¡€ç§æœ‰æ–¹æ³•
     /// <summary>
-    /// µÚÒ»Ö¡µ÷ÓÃÖ®Ç°´¥·¢¡£
+    /// ç¬¬ä¸€å¸§è°ƒç”¨ä¹‹å‰è§¦å‘ã€‚
     /// </summary>
     private void Start()
     {
@@ -38,7 +38,7 @@ public class Interlocutor : MonoBehaviour
     }
 
     /// <summary>
-    /// Ö¡Ë¢ĞÂÊ±´¥·¢¡£
+    /// å¸§åˆ·æ–°æ—¶è§¦å‘ã€‚
     /// </summary>
     private void Update()
     {
@@ -46,9 +46,9 @@ public class Interlocutor : MonoBehaviour
             return;
         if (Input.GetKeyUp(keyDownCode))
         {
-            // ´¥·¢·½·¨
+            // è§¦å‘æ–¹æ³•
             keyDownEvent.Invoke();
-            // ÔËĞĞÖØ¸´´¥·¢½«²»»ØÊÕ¶ÔÏó
+            // è¿è¡Œé‡å¤è§¦å‘å°†ä¸å›æ”¶å¯¹è±¡
             if (!repeat)
                 Finished = true;
             tip.SetActive(false);
@@ -56,9 +56,9 @@ public class Interlocutor : MonoBehaviour
     }
 
     /// <summary>
-    /// µ±´¥·¢Æ÷¼ì²âµ½ÎïÀí½Ó´¥Ê±´¥·¢¡£
+    /// å½“è§¦å‘å™¨æ£€æµ‹åˆ°ç‰©ç†æ¥è§¦æ—¶è§¦å‘ã€‚
     /// </summary>
-    /// <param name="collision">Åö×²ÎïÌå¶ÔÏó¡£</param>
+    /// <param name="collision">ç¢°æ’ç‰©ä½“å¯¹è±¡ã€‚</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (Finished)
@@ -68,9 +68,9 @@ public class Interlocutor : MonoBehaviour
     }
 
     /// <summary>
-    /// µ±´¥·¢Æ÷½â³ıÎïÀí½Ó´¥Ê±´¥·¢¡£
+    /// å½“è§¦å‘å™¨è§£é™¤ç‰©ç†æ¥è§¦æ—¶è§¦å‘ã€‚
     /// </summary>
-    /// <param name="collision">Åö×²ÎïÌå¶ÔÏó¡£</param>
+    /// <param name="collision">ç¢°æ’ç‰©ä½“å¯¹è±¡ã€‚</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == reactTag)

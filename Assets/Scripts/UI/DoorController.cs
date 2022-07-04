@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] [Tooltip("µ±Ç°¹Ø¡£")] private int curStage = 0;
-    [SerializeField] [Tooltip("³õÊ¼Í¼Æ¬¡£")] private Sprite firstSprite = null;
-    [SerializeField] [Tooltip("Í¨¹ØÍ¼Æ¬¡£")] private Sprite finishedSprite = null;
+    [SerializeField] [Tooltip("å½“å‰å…³ã€‚")] private int curStage = 0;
+    [SerializeField] [Tooltip("åˆå§‹å›¾ç‰‡ã€‚")] private Sprite firstSprite = null;
+    [SerializeField] [Tooltip("é€šå…³å›¾ç‰‡ã€‚")] private Sprite finishedSprite = null;
     private void Start()
     {
         if(PlayerPrefs.HasKey("StageFinished"))

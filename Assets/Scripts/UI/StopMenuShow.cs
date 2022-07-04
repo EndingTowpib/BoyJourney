@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class StopMenuShow : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] [Tooltip("½»»¥ÊÂ¼þÁÐ±í¡£")] private UnityEvent keyDownEvent = null;
+    [SerializeField] [Tooltip("äº¤äº’äº‹ä»¶åˆ—è¡¨ã€‚")] private UnityEvent keyDownEvent = null;
     void Start()
     {
         
